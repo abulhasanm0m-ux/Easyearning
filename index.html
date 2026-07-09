@@ -6,6 +6,7 @@
     <title>Easy Earning BD</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- 🔴 মনিট্যাগ অফিশিয়াল ইন্টিগ্রেশন (হেডারে সুরক্ষিত রাখা হলো) -->
     <script src='//libtl.com/sdk.js' data-zone='11258396' data-sdk='show_11258396'></script>
 
     <style>
@@ -36,15 +37,14 @@
         
         .col-ads1 { color: #f59e0b; } .col-ads2 { color: #f43f5e; } .col-wallet { color: #10b981; } .col-ref { color: #a855f7; } .col-task { color: #64748b; }
         
-        /* 🔒 কড়া ব্লকিং টাইমার ইন্টারফেস */
+        /* 🔒 এন্টি-চিট ফুল লকিং স্ক্রিন */
         .lock-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0f172a; display: none; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; padding: 20px; text-align: center; }
         .lock-box { background: #1e293b; border: 2px solid #f59e0b; border-radius: 20px; padding: 30px 20px; max-width: 330px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .lock-icon { font-size: 45px; color: #f59e0b; margin-bottom: 15px; animation: rotate 2s linear infinite; }
+        .lock-icon { font-size: 45px; color: #f59e0b; margin-bottom: 15px; animation: spin 2s linear infinite; }
         .lock-title { font-size: 18px; font-weight: 700; color: #ffffff; margin-bottom: 10px; }
         .lock-desc { font-size: 13px; color: #94a3b8; margin-bottom: 20px; line-height: 1.5; }
         .lock-timer { font-size: 32px; font-weight: 800; color: #38bdf8; margin-bottom: 15px; }
         
-        /* პპაპები */
         .popup { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 20px; }
         .popup-content { background: #1e293b; border: 1px solid #334155; padding: 25px; border-radius: 20px; width: 100%; max-width: 340px; text-align: center; }
         .popup-content h2 { font-size: 20px; margin-bottom: 15px; color: #38bdf8; }
@@ -53,7 +53,7 @@
         .close-btn { color: #94a3b8; font-size: 13px; margin-top: 15px; display: inline-block; cursor: pointer; }
         .footer-text { font-size: 11px; color: #64748b; margin-top: auto; text-align: center; padding-top: 20px; }
 
-        @keyframes rotate { 100% { transform: rotate(360deg); } }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
@@ -65,7 +65,7 @@
     </div>
 
     <div class="notice-board">
-        ⚠️ সাবধান: নিয়ম মেনে ১০ সেকেন্ড পুরো বিজ্ঞাপন না দেখলে অ্যাকাউন্ট চিরদিনের জন্য ব্লক হবে!
+        ⚠️ সাবধান: নিয়ম মেনে পুরো বিজ্ঞাপন না দেখলে এক পয়সাও ব্যালেন্সে যোগ হবে না!
     </div>
 
     <div class="balance-card">
@@ -80,12 +80,14 @@
 
     <div class="section-title">Earn Money</div>
     <div class="menu-grid">
-        <div class="menu-item" onclick="handleAdVerification('monetag')">
+        <!-- Watch Ads 1 -->
+        <div class="menu-item" onclick="triggerAdEngine('monetag')">
             <i class="fas fa-play-circle col-ads1"></i>
             <span>Watch Ads 1</span>
         </div>
         
-        <div class="menu-item" onclick="handleAdVerification('direct')">
+        <!-- Watch Ads 2 -->
+        <div class="menu-item" onclick="triggerAdEngine('direct')">
             <i class="fas fa-video col-ads2"></i>
             <span>Watch Ads 2</span>
         </div>
@@ -115,16 +117,18 @@
         </div>
     </div>
 
+    <!-- 🔒 কাউন্টডাউন সিকিউরিটি বক্স -->
     <div id="lock-screen" class="lock-overlay">
         <div class="lock-box">
-            <div class="lock-icon"><i class="fas fa-spinner"></i></div>
+            <div class="lock-icon"><i class="fas fa-circle-notch"></i></div>
             <div class="lock-title">বিজ্ঞাপন ভেরিফিকেশন চলছে...</div>
-            <div class="lock-desc">⚠️ সাবধান! বিজ্ঞাপন শেষ হওয়ার আগে বা ১০ সেকেন্ডের আগে ব্যাক বাটনে চাপ দিলে কোনো ব্যালেন্স পাবেন না।</div>
+            <div class="lock-desc">⚠️ পুরো ১০ সেকেন্ড শেষ হওয়ার আগে ব্যাক বাটনে চাপ দিলে বা অ্যাপ কাটলে অ্যাকাউন্ট ব্লক করা হবে।</div>
             <div id="timer-display" class="lock-timer">10s</div>
-            <button id="reward-claim-btn" class="btn-block" style="display:none; background:#10b981; color:white;" onclick="giveUserReward()">🎁 Claim Reward</button>
+            <button id="reward-claim-btn" class="btn-block" style="display:none; background:#10b981; color:white;" onclick="processFinalReward()">🎁 Claim Reward</button>
         </div>
     </div>
 
+    <!-- Withdraw Popup -->
     <div id="withdraw-popup" class="popup">
         <div class="popup-content">
             <h2>Withdraw (Bkash Only)</h2>
@@ -136,6 +140,7 @@
         </div>
     </div>
 
+    <!-- Referral Popup -->
     <div id="refer-popup" class="popup">
         <div class="popup-content">
             <h2>Refer & Earn</h2>
@@ -153,63 +158,59 @@
         let isJoined = localStorage.getItem('channel_joined') === 'true';
         document.getElementById('user-balance').innerText = currentBalance.toFixed(2);
 
-        let countdown;
-        let timerVal = 10;
-        let adValidated = false;
+        let activeTimer;
+        let clockCount = 10;
+        let isAdValid = false;
 
         function verifyChannelJoin() {
             window.open("https://t.me/+WTcMr-uFw3s1MDVl", '_blank');
             localStorage.setItem('channel_joined', 'true');
             isJoined = true;
-            alert('চ্যানেল ভিজিট সফল! আপনার বাটনগুলো আনলক করা হয়েছে।');
+            alert('চ্যানেল জয়েন নিশ্চিত হয়েছে! আপনার সব বাটন আনলকড।');
         }
 
         function checkJoinStatus() {
             if (!isJoined) {
-                alert('🔴 প্রথমে ওপরে থাকা "Join Now" বাটনে ক্লিক করে চ্যানেলে জয়েন করুন।');
+                alert('🔴 কাজ করতে প্রথমে ওপরে থাকা "Join Now" বাটনে ক্লিক করে চ্যানেলে জয়েন করুন।');
                 return false;
             }
             return true;
         }
 
-        // 🔒 রিয়েল-টাইম স্মার্ট ট্র্যাকিং ইঞ্জিন (অ্যাড ক্লিক ভেরিফিকেশন)
-        function handleAdVerification(adType) {
+        // 🔒 সিকিউর ব্যাকগ্রাউন্ড ট্র্যাকিং ইঞ্জিন
+        function triggerAdEngine(type) {
             if (!checkJoinStatus()) return;
 
-            timerVal = 10;
-            adValidated = false;
+            clockCount = 10;
+            isAdValid = false;
             document.getElementById('reward-claim-btn').style.display = 'none';
             document.getElementById('timer-display').style.display = 'block';
-            document.getElementById('timer-display').innerText = timerVal + "s";
+            document.getElementById('timer-display').innerText = clockCount + "s";
             document.getElementById('lock-screen').style.display = 'flex';
 
-            // অ্যাড ওপেন করা হচ্ছে
-            if (adType === 'monetag') {
-                if (typeof show_11258396 === 'function') {
-                    show_11258396().catch(() => {});
-                } else {
-                    window.open('https://omg10.com/4/11260213', '_blank'); // ব্যাকআপ
-                }
+            // ১. নির্দিষ্ট উইন্ডোতে অ্যাড রান করা
+            if (type === 'monetag' && typeof show_11258396 === 'function') {
+                show_11258396().catch(() => {});
             } else {
                 window.open('https://omg10.com/4/11260213', '_blank');
             }
 
-            // ব্যাকগ্রাউন্ড টাইমার লকিং সিস্টেম
-            countdown = setInterval(function() {
-                timerVal--;
-                if(timerVal > 0) {
-                    document.getElementById('timer-display').innerText = timerVal + "s";
+            // ২. কড়া টাইমার ট্র্যাকিং লক
+            activeTimer = setInterval(function() {
+                clockCount--;
+                if(clockCount > 0) {
+                    document.getElementById('timer-display').innerText = clockCount + "s";
                 } else {
-                    clearInterval(countdown);
-                    adValidated = true;
+                    clearInterval(activeTimer);
+                    isAdValid = true;
                     document.getElementById('timer-display').style.display = 'none';
                     document.getElementById('reward-claim-btn').style.display = 'block';
                 }
             }, 1000);
         }
 
-        function giveUserReward() {
-            if (adValidated) {
+        function processFinalReward() {
+            if (isAdValid) {
                 currentBalance += 0.10;
                 localStorage.setItem('balance', currentBalance);
                 document.getElementById('user-balance').innerText = currentBalance.toFixed(2);
