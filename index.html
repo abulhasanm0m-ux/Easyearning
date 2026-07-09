@@ -35,9 +35,10 @@
         .task-count { font-size: 11px; color: #94a3b8; margin-top: 5px; background: rgba(255,255,255,0.05); padding: 2px 8px; border-radius: 10px; font-weight: 500; }
         .info-subtext { font-size: 10.5px; color: #38bdf8; margin-top: 4px; font-weight: 500; }
         .info-subtext.wallet { color: #10b981; }
+        .info-subtext.admin { color: #f59e0b; }
 
         .col-ads1 { color: #f59e0b; } .col-ads2 { color: #f43f5e; } .col-wallet { color: #10b981; } .col-ref { color: #a855f7; }
-        .col-task1 { color: #06b6d4; } .col-task2 { color: #ec4899; }
+        .col-task1 { color: #06b6d4; } .col-task2 { color: #ec4899; } .col-admin { color: #e11d48; }
 
         /* 🔒 Anti-Cheat Radar Overlay */
         .lock-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0f172a; display: none; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; padding: 20px; text-align: center; }
@@ -66,7 +67,7 @@
     </div>
 
     <div class="notice-board">
-        🚨 ওয়ার্নিং: কোনো প্রকার চুরি (Focus Churi/Split Screen) করলে ব্যালেন্স অ্যাড হবে না! নিয়ম মেনে ১০ সেকেন্ড ফুল স্ক্রিনে অ্যাড দেখুন।
+        🚨 ওয়ার্নিং: কোনো প্রকার চুরি (Focus Churi/Split Screen) করলে ব্যালেন্স অ্যাড হবে না! নিয়ম মেনে ১০ সেকেন্ড ফুল স্ক্রিনে অ্যাড দেখুন।
     </div>
 
     <div class="balance-card">
@@ -119,6 +120,16 @@
         </div>
     </div>
 
+    <!-- 🛡️ Support & Admin Section -->
+    <div class="section-title">Support & Help</div>
+    <div class="menu-grid">
+        <div class="menu-item" onclick="openPopup('admin-popup')">
+            <i class="fas fa-user-shield col-admin"></i>
+            <span>Support Admin 2</span>
+            <div class="info-subtext admin">@tamimkhan222</div>
+        </div>
+    </div>
+
     <div id="lock-screen" class="lock-overlay">
         <div class="lock-box">
             <div class="lock-icon"><i class="fas fa-user-shield"></i></div>
@@ -151,7 +162,7 @@
         <div class="popup-content">
             <h2><i class="fas fa-share-alt"></i> Refer & Earn</h2>
             <div class="withdraw-alert" style="background: rgba(168, 85, 247, 0.1); border-color: #a855f7; color: #c084fc;">
-                🎉 প্রতি সফল রেফারে পাবেন নিশ্চিত ৳ ০.৫০ বোনাস! নিচের লিংকটি কপি করে বন্ধুদের শেয়ার করুন।
+                🎉 প্রতি সফল রেফারে পাবেন নিশ্চিত ৳ ০.৫০ বোনাস! নিচের লিংকটি কপি করে বন্ধুদের শেয়ার করুন।
             </div>
             <input type="text" class="popup-input" id="ref-link-input" readonly value="https://t.me/EasyRewardBDBot?start=refUser">
             <button class="btn-block" style="background:#a855f7; color:white;" onclick="navigator.clipboard.writeText(document.getElementById('ref-link-input').value); alert('📋 Link Copied Successfully!');">📋 Copy Link</button>
@@ -160,10 +171,22 @@
         </div>
     </div>
 
+    <!-- 🛡️ Support Admin Popup Box -->
+    <div id="admin-popup" class="popup">
+        <div class="popup-content">
+            <h2><i class="fas fa-headset"></i> Support Admin 2</h2>
+            <div class="withdraw-alert" style="background: rgba(245, 158, 11, 0.1); border-color: #f59e0b; color: #fbbf24;">
+                📢 পেমেন্ট বা অ্যাপের যেকোনো সমস্যায় সরাসরি আমাদের পার্টনার ও সাপোর্ট অ্যাডমিন তামিম খানকে মেসেজ দিন।
+            </div>
+            <button class="btn-block" style="background:#f59e0b; color:black;" onclick="window.open('https://t.me/tamimkhan222', '_blank');">💬 Message @tamimkhan222</button>
+            <br>
+            <span style="cursor:pointer; color:#94a3b8; font-size:13px; display:inline-block; margin-top:12px;" onclick="closePopup('admin-popup')">Close</span>
+        </div>
+    </div>
+
     <script>
         const MAX_DAILY_ADS = 20; 
 
-        // 🔄 পুরানো ব্যালেন্স জিরো করার জন্য মাস্টার রিসেট কোড
         if (localStorage.getItem('balance_system_v2_reset') !== 'true') {
             localStorage.setItem('balance', '0.00'); 
             localStorage.setItem('balance_system_v2_reset', 'true'); 
@@ -172,7 +195,6 @@
             localStorage.setItem('last_reset_date', new Date().toDateString());
         }
 
-        // 📅 ডেইলি ডেট চেকার
         let todayStr = new Date().toDateString();
         if (localStorage.getItem('last_reset_date') !== todayStr) {
             localStorage.setItem('ad1_remaining', MAX_DAILY_ADS);
@@ -198,7 +220,6 @@
             alert('Channel Verified!');
         }
 
-        // 👁️ HIGH SECURITY RADAR
         window.addEventListener('blur', function() {
             if (!canClaim) {
                 appFocused = false;
@@ -275,7 +296,6 @@
             }
         }
 
-        // 💸 Withdraw System
         function submitWithdraw() {
             let number = document.getElementById('bkash-number').value;
             let amount = parseFloat(document.getElementById('withdraw-amount').value);
@@ -288,7 +308,7 @@
             localStorage.setItem('balance', currentBalance);
             document.getElementById('user-balance').innerText = currentBalance.toFixed(2);
             
-            alert(`✅ সফল হয়েছে!\n৳${amount.toFixed(2)} উইথড্র রিকোয়েস্ট পাঠানো হয়েছে।`);
+            alert(`✅ সফল হয়েছে!\n৳${amount.toFixed(2)} উইথড্র রিকোয়েস্ট পাঠানো হয়েছে।`);
             closePopup('withdraw-popup');
             document.getElementById('bkash-number').value = '';
             document.getElementById('withdraw-amount').value = '';
