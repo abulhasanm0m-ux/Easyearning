@@ -17,7 +17,8 @@
         .header h1 { font-size: 24px; font-weight: 700; }
         .header p { font-size: 13px; color: #94a3b8; margin-top: 5px; }
         
-        .notice-board { background: rgba(244, 63, 94, 0.15); border: 1px solid #f43f5e; width: 100%; max-width: 350px; border-radius: 12px; padding: 10px 15px; margin-bottom: 15px; text-align: center; font-size: 12px; color: #fda4af; font-weight: 500; }
+        /* কড়া নোটিশ বোর্ড */
+        .notice-board { background: rgba(244, 63, 94, 0.15); border: 1px solid #f43f5e; width: 100%; max-width: 350px; border-radius: 12px; padding: 10px 15px; margin-bottom: 15px; text-align: center; font-size: 12px; color: #fda4af; font-weight: 500; line-height: 1.4; }
         
         .balance-card { background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%); width: 100%; max-width: 350px; border-radius: 20px; padding: 20px; text-align: center; box-shadow: 0 10px 25px rgba(2, 132, 199, 0.3); margin-bottom: 25px; }
         .balance-label { font-size: 12px; text-transform: uppercase; color: #e0f2fe; margin-bottom: 5px; }
@@ -26,7 +27,7 @@
         .join-banner { background: rgba(30, 41, 59, 0.7); border: 2px solid #38bdf8; width: 100%; max-width: 350px; border-radius: 15px; padding: 15px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; }
         .join-info { display: flex; align-items: center; gap: 12px; }
         .join-info i { font-size: 24px; color: #24a1de; }
-        .join-btn { background: #24a1de; color: white; text-decoration: none; padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; }
+        .join-btn { background: #24a1de; color: white; text-decoration: none; padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; border: none; }
         
         .section-title { width: 100%; max-width: 350px; font-size: 14px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; font-weight: 600; }
         .menu-grid { width: 100%; max-width: 350px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 20px; }
@@ -56,7 +57,7 @@
 
     <!-- ⚠️ কড়া নোটিশ বোর্ড -->
     <div class="notice-board">
-        ⚠️ সাবধান: চালাকি করে অ্যাড না দেখে ব্যাক করলে ব্যালেন্স যোগ হবে না এবং আইডি ব্লক হবে!
+        ⚠️ সাবধান: নিয়ম মেনে কাজ করুন। কোনো প্রকার চালাকি করলে আইডি চিরদিনের জন্য ব্লক করা হবে!
     </div>
 
     <div class="balance-card">
@@ -122,7 +123,7 @@
         </div>
     </div>
 
-    <!-- Referral Popup (সঠিক বটের ইউজারনেমসহ) -->
+    <!-- Referral Popup -->
     <div id="refer-popup" class="popup">
         <div class="popup-content">
             <h2>Refer & Earn</h2>
@@ -156,42 +157,51 @@
             return true;
         }
 
-        // 🔒 Watch Ads 1 (Main Monetag)
+        // 🔒 Watch Ads 1 (Monetag SDK + কড়া ওয়ার্নিং নোটিশ)
         function showWatchAds1() {
             if (!checkJoinStatus()) return;
             
+            alert("⚠️ সাবধান: অ্যাড লোড হচ্ছে! অ্যাড শেষ হওয়ার আগে বের হলে ব্যালেন্স অ্যাড হবে না।");
+
             if (typeof show_11258396 === 'function') {
                 show_11258396().then(() => {
                     addMoney(0.10); 
                 }).catch((err) => {
-                    alert("অ্যাড লোড হতে সমস্যা হয়েছে বা আপনি কেটে দিয়েছেন!");
+                    alert("❌ আপনি অ্যাড শেষ হওয়ার আগেই কেটে দিয়েছেন! কোনো টাকা যোগ করা হয়নি।");
                 });
             } else {
-                alert("অ্যাড নেটওয়ার্ক লোড হচ্ছে... অনুগ্রহ করে ৫ সেকেন্ড অপেক্ষা করুন।");
+                // এসডিকে ব্যাকআপ মেথড (১০ সেকেন্ড সিকিউরিটি ট্র্যাকিং সহ)
+                let startTime = new Date().getTime();
                 setTimeout(function() {
-                    addMoney(0.10);
-                }, 5000);
+                    let endTime = new Date().getTime();
+                    if ((endTime - startTime) >= 10000) {
+                        addMoney(0.10);
+                    } else {
+                        alert('❌ অ্যাড শেষ হওয়ার আগে বের হওয়ার কারণে ব্যালেন্স অ্যাড করা হয়নি!');
+                    }
+                }, 10000);
             }
         }
 
-        // 🔒 Watch Ads 2 (Direct Link) - ৫ সেকেন্ড সিকিউরিটিসহ
+        // 🔒 Watch Ads 2 (Direct Link + কড়া ১০ সেকেন্ড টাইমার সিকিউরিটি)
         function showWatchAds2() {
             if (!checkJoinStatus()) return;
 
             let directAdLink = "https://omg10.com/4/11260213";
-            alert('⚠️ সাবধান: ডিরেক্ট অ্যাড ওপেন হচ্ছে! টাকা পেতে আপনাকে অবশ্যই পেজটিতে ৫ সেকেন্ড থাকতে হবে।');
+            alert('⚠️ সাবধান: ডিরেক্ট অ্যাড ওপেন হচ্ছে! টাকা পেতে আপনাকে অবশ্যই কমপক্ষে ১০ সেকেন্ড অপেক্ষা করতে হবে। ১০ সেকেন্ডের আগে বের হলে ব্যালেন্স অ্যাড হবে না!');
             
             let startTime = new Date().getTime();
             window.open(directAdLink, '_blank');
 
             setTimeout(function() {
                 let endTime = new Date().getTime();
-                if ((endTime - startTime) >= 5000) {
+                // ১০ সেকেন্ড (১০০০০ মিলি-সেকেন্ড) ভেরিফিকেশন চেক
+                if ((endTime - startTime) >= 10000) {
                     addMoney(0.10);
                 } else {
-                    alert('❌ আপনি ৫ সেকেন্ডের আগেই ব্যাক এসেছেন! কোনো টাকা যোগ করা হয়নি।');
+                    alert('❌ আপনি ১০ সেকেন্ড অপেক্ষা না করেই ব্যাক এসেছেন! কোনো টাকা যোগ করা হয়নি।');
                 }
-            }, 5000);
+            }, 10000);
         }
 
         function addMoney(amount) {
@@ -216,7 +226,7 @@
         }
         function closePopup(id) { document.getElementById(id).style.display = 'none'; }
 
-        // বিকাশ উইথড্র (সঠিক বটের ইউজারনেমসহ)
+        // বিকাশ উইথড্র রিকোয়েস্ট
         function submitWithdraw() {
             let number = document.getElementById('number').value;
             let amount = parseFloat(document.getElementById('amount').value);
