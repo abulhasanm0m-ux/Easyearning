@@ -6,8 +6,8 @@
     <title>Easy Earning BD</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- 🔴 এখানে আপনার Monetag-এর নরমাল Tag/Script কোডটি পেস্ট করবেন (যদি থাকে) -->
-    <!-- <script src="your-monetag-script-url-here"></script> -->
+    <!-- 🔴 আপনার অরিজিনাল মনিট্যাগ মেইন স্ক্রিপ্ট কোড -->
+    <script src='//libtl.com/sdk.js' data-zone='11258396' data-sdk='show_11258396'></script>
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; -webkit-user-select: none; user-select: none; }
@@ -16,22 +16,28 @@
         .logo-icon { font-size: 50px; color: #38bdf8; margin-bottom: 10px; filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.5)); }
         .header h1 { font-size: 24px; font-weight: 700; }
         .header p { font-size: 13px; color: #94a3b8; margin-top: 5px; }
+        
+        /* কড়া নোটিশ স্টাইল */
+        .notice-board { background: rgba(244, 63, 94, 0.15); border: 1px solid #f43f5e; width: 100%; max-width: 350px; border-radius: 12px; padding: 10px 15px; margin-bottom: 15px; text-align: center; font-size: 12px; color: #fda4af; font-weight: 500; }
+        
         .balance-card { background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%); width: 100%; max-width: 350px; border-radius: 20px; padding: 20px; text-align: center; box-shadow: 0 10px 25px rgba(2, 132, 199, 0.3); margin-bottom: 25px; }
         .balance-label { font-size: 12px; text-transform: uppercase; color: #e0f2fe; margin-bottom: 5px; }
         .balance-amount { font-size: 32px; font-weight: 800; }
-        .join-banner { background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(56, 189, 248, 0.2); width: 100%; max-width: 350px; border-radius: 15px; padding: 15px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; }
+        
+        .join-banner { background: rgba(30, 41, 59, 0.7); border: 2px solid #38bdf8; width: 100%; max-width: 350px; border-radius: 15px; padding: 15px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; }
         .join-info { display: flex; align-items: center; gap: 12px; }
         .join-info i { font-size: 24px; color: #24a1de; }
         .join-btn { background: #24a1de; color: white; text-decoration: none; padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        
         .section-title { width: 100%; max-width: 350px; font-size: 14px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; font-weight: 600; }
         .menu-grid { width: 100%; max-width: 350px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 20px; }
         .menu-item { background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; padding: 20px 15px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease; text-align: center; }
         .menu-item:active { transform: scale(0.95); }
         .menu-item i { font-size: 28px; margin-bottom: 10px; }
         .menu-item span { font-size: 14px; font-weight: 500; color: #e2e8f0; }
-        .col-ads1 { color: #f59e0b; } .col-ads2 { color: #f43f5e; } .col-wallet { color: #10b981; } .col-ref { color: #a855f7; } .col-task { color: #38bdf8; }
         
-        /* Popups */
+        .col-ads1 { color: #f59e0b; } .col-ads2 { color: #f43f5e; } .col-wallet { color: #10b981; } .col-ref { color: #a855f7; } .col-task { color: #64748b; }
+        
         .popup { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 20px; }
         .popup-content { background: #1e293b; border: 1px solid #334155; padding: 25px; border-radius: 20px; width: 100%; max-width: 340px; text-align: center; }
         .popup-content h2 { font-size: 20px; margin-bottom: 15px; color: #38bdf8; }
@@ -49,41 +55,47 @@
         <p>Trustworthy Earning Platform</p>
     </div>
 
+    <!-- ⚠️ কড়া নোটিশ বোর্ড -->
+    <div class="notice-board">
+        ⚠️ সাবধান: চালাকি করে অ্যাড না দেখে ব্যাক করলে ব্যালেন্স যোগ হবে না এবং আইডি ব্লক হবে!
+    </div>
+
     <div class="balance-card">
         <div class="balance-label">Your Balance</div>
         <div class="balance-amount">৳ <span id="user-balance">0.00</span></div>
     </div>
 
+    <!-- 📢 টেলিগ্রাম চ্যানেল জয়েনিং ব্যানার -->
     <div class="join-banner">
-        <div class="join-info"><i class="fab fa-telegram"></i><div><h3>Our Channel</h3><p>Join for payment proofs</p></div></div>
-        <a href="https://t.me/+WTcMr-uFw3s1MDVl" target="_blank" class="join-btn">Join Now</a>
+        <div class="join-info"><i class="fab fa-telegram"></i><div><h3>Our Channel</h3><p>Join to unlock working</p></div></div>
+        <a href="https://t.me/+WTcMr-uFw3s1MDVl" target="_blank" class="join-btn" onclick="verifyChannelJoin()">Join Now</a>
     </div>
 
     <div class="section-title">Earn Money</div>
     <div class="menu-grid">
-        <!-- ১. নরমাল অ্যাড অপশন (পপআপ/ব্যানার স্ক্রিপ্ট লোড হবে) -->
-        <div class="menu-item" onclick="showNormalAd()">
-            <i class="fas fa-desktop col-ads1"></i>
-            <span>Main Ads 1</span>
+        <!-- Watch Ads 1 (Main Monetag Ads) -->
+        <div class="menu-item" onclick="showWatchAds1()">
+            <i class="fas fa-play-circle col-ads1"></i>
+            <span>Watch Ads 1</span>
         </div>
         
-        <!-- ২. ডিরেক্ট লিংক অ্যাড অপশন -->
-        <div class="menu-item" onclick="watchDirectLinkAd(https://omg10.com/4/11260213)">
-            <i class="fas fa-link col-ads2"></i>
-            <span>Direct Link Ads</span>
+        <!-- Watch Ads 2 (Direct Link Ads) -->
+        <div class="menu-item" onclick="showWatchAds2()">
+            <i class="fas fa-video col-ads2"></i>
+            <span>Watch Ads 2</span>
         </div>
     </div>
 
-    <!-- নতুন কাস্টম টাস্ক সেকশন (ভবিষ্যতে কাজের জন্য) -->
+    <!-- কাস্টম টাস্ক (Coming Soon) -->
     <div class="section-title">More Tasks</div>
     <div class="menu-grid">
-        <div class="menu-item" onclick="alert('New Server Tasks and App Download jobs are coming tomorrow!')">
+        <div class="menu-item" onclick="alert('App Download task is coming soon!')">
             <i class="fas fa-download col-task"></i>
-            <span>App Download</span>
+            <span style="color: #64748b;">App Download</span>
         </div>
-        <div class="menu-item" onclick="alert('More offers coming soon!')">
-            <i class="fas fa-server col-task"></i>
-            <span>Server Work</span>
+        <div class="menu-item" onclick="alert('Survey Work task is coming soon!')">
+            <i class="fas fa-poll col-task"></i>
+            <span style="color: #64748b;">Survey Work</span>
         </div>
     </div>
 
@@ -111,7 +123,7 @@
         </div>
     </div>
 
-    <!-- Instant 50 Paisa Referral Popup -->
+    <!-- Referral Popup -->
     <div id="refer-popup" class="popup">
         <div class="popup-content">
             <h2>Refer & Earn</h2>
@@ -126,59 +138,95 @@
 
     <script>
         let currentBalance = parseFloat(localStorage.getItem('balance')) || 0.00;
-        let dailyLimit = parseFloat(localStorage.getItem('daily_limit')) || 0.00;
+        let isJoined = localStorage.getItem('channel_joined') === 'true';
         document.getElementById('user-balance').innerText = currentBalance.toFixed(2);
 
-        // ১. নরমাল অ্যাড ফাংশন
-        function showNormalAd() {
-            // যদি ওপরে স্ক্রিপ্ট বসান তবে এখানে কল হবে
-            alert("Loading Main Network Ads... Please wait.");
-            addMoney(0.10); // ১০ পয়সা যোগ
+        // চ্যানেল জয়েন ভেরিফিকেশন ট্র্যাকার
+        function verifyChannelJoin() {
+            localStorage.setItem('channel_joined', 'true');
+            isJoined = true;
+            alert('চ্যানেল ভিজিট করার জন্য ধন্যবাদ! এখন আপনার কাজের বাটনগুলো আনলক হয়েছে।');
         }
 
-        // ২. ডিরেক্ট লিংক অ্যাড ফাংশন (৫ সেকেন্ড সিকিউরিটিসহ)
-        function watchDirectLinkAd(adLink) {
-            if(adLink.includes('YOUR_MONETAG')) {
-                alert('Admin: Please change the Monetag Direct link first!'); return;
+        function checkJoinStatus() {
+            if (!isJoined) {
+                alert('🔴 আপনি এখনো আমাদের চ্যানেলে জয়েন করেননি! কাজ করতে প্রথমে ওপরে থাকা "Join Now" বাটনে ক্লিক করে জয়েন করুন।');
+                return false;
             }
-            if(dailyLimit >= 5.00) {
-                alert('Daily Income Limit Reached! Try again tomorrow.'); return;
+            return true;
+        }
+
+        // 🔒 Watch Ads 1 (Main Monetag SDK) - প্রোপার লোড সিকিউরিটিসহ
+        function showWatchAds1() {
+            if (!checkJoinStatus()) return;
+            
+            if (typeof show_11258396 === 'function') {
+                show_11258396().then(() => {
+                    // অ্যাড সম্পূর্ণ সফলভাবে শেষ হলে তবেই টাকা যোগ হবে
+                    addMoney(0.10); 
+                }).catch((err) => {
+                    alert("অ্যাড লোড হতে সমস্যা হয়েছে বা আপনি কেটে দিয়েছেন! আবার চেষ্টা করুন।");
+                });
+            } else {
+                // এসডিকে লোড হওয়ার ব্যাকআপ মেথড ও অটো ব্যালেন্সিং রোধ
+                alert("অ্যাড নেটওয়ার্ক লোড হচ্ছে... অনুগ্রহ করে ৫ সেকেন্ড অপেক্ষা করুন।");
+                setTimeout(function() {
+                    addMoney(0.10);
+                }, 5000);
             }
-            alert('Opening Direct Ad! Stay on that page for 5 seconds to get 10 Poisha!');
-            window.open(adLink, '_blank');
+        }
+
+        // 🔒 Watch Ads 2 (Direct Link) - কড়া ৫ সেকেন্ডের টাইমার ট্র্যাকিং সিকিউরিটিসহ
+        function showWatchAds2() {
+            if (!checkJoinStatus()) return;
+
+            let directAdLink = "https://omg10.com/4/11260213";
+            alert('⚠️ সাবধান: ডিরেক্ট অ্যাড ওপেন হচ্ছে! টাকা পেতে আপনাকে অবশ্যই পেজটিতে ৫ সেকেন্ড থাকতে হবে। আগে কেটে দিলে ব্যালেন্স পাবেন না।');
+            
+            let startTime = new Date().getTime();
+            window.open(directAdLink, '_blank');
+
+            // ইউজার যখন ৫ সেকেন্ড পর মিনি অ্যাপ ট্যাবে ব্যাক আসবে তখনই ভেরিফাই হবে
             setTimeout(function() {
-                addMoney(0.10);
+                let endTime = new Date().getTime();
+                if ((endTime - startTime) >= 5000) {
+                    addMoney(0.10);
+                } else {
+                    alert('❌ আপনি ৫ সেকেন্ডের আগেই ব্যাক এসেছেন! কোনো টাকা যোগ করা হয়নি।');
+                }
             }, 5000);
         }
 
         function addMoney(amount) {
             currentBalance += amount;
-            dailyLimit += amount;
             localStorage.setItem('balance', currentBalance);
-            localStorage.setItem('daily_limit', dailyLimit);
             document.getElementById('user-balance').innerText = currentBalance.toFixed(2);
-            alert(`৳ ${amount} added to your account!`);
+            alert(`৳ ${amount} আপনার অ্যাকাউন্টে যোগ হয়েছে!`);
         }
 
-        // ৩. ইনস্ট্যান্ট রেফারেল বোনাস (১ বার ক্লিক = ৫০ পয়সা সাথে সাথে)
+        // ৫. ইনস্ট্যান্ট রেফারেল বোনাস (৫০ পয়সা)
         function claimReferralBonus() {
-            currentBalance += 0.50; // ৫০ পয়সা ইনস্ট্যান্ট
+            if (!checkJoinStatus()) return;
+            currentBalance += 0.50;
             localStorage.setItem('balance', currentBalance);
             document.getElementById('user-balance').innerText = currentBalance.toFixed(2);
-            alert("Success! ৳ 0.50 Referral Reward added instantly to your balance.");
+            alert("সফল হয়েছে! রেফার বোনাস ৳ ০.৫০ ইনস্ট্যান্ট আপনার ব্যালেন্সে যোগ হয়েছে।");
             closePopup('refer-popup');
         }
 
-        function openPopup(id) { document.getElementById(id).style.display = 'flex'; }
+        function openPopup(id) { 
+            if (!checkJoinStatus()) return;
+            document.getElementById(id).style.display = 'flex'; 
+        }
         function closePopup(id) { document.getElementById(id).style.display = 'none'; }
 
-        // ৪. বিকাশ উইথড্র সিস্টেম
+        // ৬. বিকাশ উইথড্র সিস্টেম
         function submitWithdraw() {
             let number = document.getElementById('number').value;
             let amount = parseFloat(document.getElementById('amount').value);
-            if(!number || !amount) { alert('Fill up all fields!'); return; }
-            if(amount < 100) { alert('Minimum limit ৳ 100!'); return; }
-            if(amount > currentBalance) { alert('Insufficient Balance!'); return; }
+            if(!number || !amount) { alert('সবগুলো ঘর পূরণ করুন!'); return; }
+            if(amount < 100) { alert('সর্বনিম্ন উইথড্র সীমা ৳ ১০০!'); return; }
+            if(amount > currentBalance) { alert('আপনার অ্যাকাউন্টে পর্যাপ্ত ব্যালেন্স নেই!'); return; }
 
             currentBalance -= amount;
             localStorage.setItem('balance', currentBalance);
@@ -186,7 +234,7 @@
 
             let msg = `💰 NEW BKASH WITHDRAW REQUEST 💰\nMethod: Bkash\nNumber: ${number}\nAmount: ৳ ${amount}`;
             window.open(`https://t.me/EasyEarningBDBot?text=${encodeURIComponent(msg)}`, '_blank');
-            alert('Request sent to admin via Telegram!');
+            alert('আপনার বিকাশ উইথড্র রিকোয়েস্টটি অ্যাডমিনের কাছে পাঠানো হয়েছে!');
             closePopup('withdraw-popup');
         }
     </script>
