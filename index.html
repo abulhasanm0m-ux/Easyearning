@@ -17,7 +17,7 @@
         .header h1 { font-size: 24px; font-weight: 700; }
         .header p { font-size: 13px; color: #94a3b8; margin-top: 5px; }
         
-        .notice-board { background: rgba(244, 63, 94, 0.15); border: 1px solid #f43f5e; width: 100%; max-width: 350px; border-radius: 12px; padding: 10px 15px; margin-bottom: 15px; text-align: center; font-size: 12px; color: #fda4af; font-weight: 500; line-height: 1.4; }
+        .notice-board { background: rgba(244, 63, 94, 0.15); border: 1px solid #f43f5e; width: 100%; max-width: 350px; border-radius: 12px; padding: 12px 15px; margin-bottom: 20px; text-align: center; font-size: 12.5px; color: #fecdd3; font-weight: 600; line-height: 1.5; box-shadow: 0 4px 15px rgba(244, 63, 94, 0.1); }
         
         .balance-card { background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%); width: 100%; max-width: 350px; border-radius: 20px; padding: 20px; text-align: center; box-shadow: 0 10px 25px rgba(2, 132, 199, 0.3); margin-bottom: 25px; }
         .balance-amount { font-size: 32px; font-weight: 800; }
@@ -25,12 +25,17 @@
         .join-banner { background: rgba(30, 41, 59, 0.7); border: 2px solid #38bdf8; width: 100%; max-width: 350px; border-radius: 15px; padding: 15px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; }
         .join-btn { background: #24a1de; color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; border: none; }
         
-        .section-title { width: 100%; max-width: 350px; font-size: 14px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; font-weight: 600; }
-        .menu-grid { width: 100%; max-width: 350px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 20px; }
-        .menu-item { background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; padding: 15px 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; text-align: center; }
+        .section-title { width: 100%; max-width: 350px; font-size: 14px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+        .menu-grid { width: 100%; max-width: 350px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 25px; }
+        .menu-item { background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; padding: 15px 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; text-align: center; transition: 0.2s; }
+        .menu-item:active { transform: scale(0.97); background: rgba(30, 41, 59, 0.8); }
         .menu-item i { font-size: 28px; margin-bottom: 8px; }
-        .task-count { font-size: 11px; color: #94a3b8; margin-top: 5px; background: rgba(255,255,255,0.05); padding: 2px 8px; border-radius: 10px; }
+        .menu-item span { font-size: 14px; font-weight: 600; }
         
+        .task-count { font-size: 11px; color: #94a3b8; margin-top: 5px; background: rgba(255,255,255,0.05); padding: 2px 8px; border-radius: 10px; font-weight: 500; }
+        .info-subtext { font-size: 10.5px; color: #38bdf8; margin-top: 4px; font-weight: 500; }
+        .info-subtext.wallet { color: #10b981; }
+
         .col-ads1 { color: #f59e0b; } .col-ads2 { color: #f43f5e; } .col-wallet { color: #10b981; } .col-ref { color: #a855f7; }
         .col-task1 { color: #06b6d4; } .col-task2 { color: #ec4899; }
 
@@ -41,11 +46,11 @@
         .lock-timer { font-size: 38px; font-weight: 800; color: #38bdf8; margin-bottom: 15px; }
         .cheat-warning { color: #f43f5e; font-size: 13px; font-weight: bold; margin-top: 10px; background: rgba(244, 63, 94, 0.1); padding: 8px; border-radius: 8px; border: 1px dashed #f43f5e; }
         
-        /* 💼 Professional Popup Design */
+        /* 💼 Popup Design */
         .popup { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 20px; }
         .popup-content { background: #1e293b; border: 1px solid #334155; padding: 25px; border-radius: 20px; width: 100%; max-width: 340px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
         .popup-content h2 { font-size: 20px; margin-bottom: 10px; color: #38bdf8; }
-        .withdraw-alert { background: rgba(16, 185, 129, 0.1); border: 1px dashed #10b981; padding: 8px; border-radius: 8px; font-size: 12px; color: #34d399; margin-bottom: 15px; font-weight: 600; }
+        .withdraw-alert { background: rgba(16, 185, 129, 0.1); border: 1px dashed #10b981; padding: 8px; border-radius: 8px; font-size: 12px; color: #34d399; margin-bottom: 15px; font-weight: 600; line-height: 1.4; }
         .popup-input { width: 100%; padding: 12px; background: #0f172a; border: 1px solid #334155; border-radius: 10px; color: white; font-size: 14px; margin-bottom: 12px; outline: none; text-align: center; }
         .popup-input:focus { border-color: #38bdf8; }
         .btn-block { width: 100%; padding: 12px; background: #38bdf8; color: #0f172a; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; margin-top: 5px; font-size: 14px; transition: 0.2s; }
@@ -61,7 +66,7 @@
     </div>
 
     <div class="notice-board">
-        ⚠️ প্রতিদিনের লিমিট ২০টি অ্যাড। নিয়ম মেনে কাজ না করলে ব্যালেন্স যোগ হবে না!
+        🚨 ওয়ার্নিং: কোনো প্রকার চুরি (Focus Churi/Split Screen) করলে ব্যালেন্স অ্যাড হবে না! নিয়ম মেনে ১০ সেকেন্ড ফুল স্ক্রিনে অ্যাড দেখুন।
     </div>
 
     <div class="balance-card">
@@ -100,55 +105,61 @@
         </div>
     </div>
 
-    <div class="section-title">Menu</div>
+    <div class="section-title">Menu & Actions</div>
     <div class="menu-grid">
         <div class="menu-item" onclick="openPopup('withdraw-popup')">
             <i class="fas fa-wallet col-wallet"></i>
             <span>Withdraw</span>
+            <div class="info-subtext wallet">Min: ৳ 30.00</div>
         </div>
         <div class="menu-item" onclick="openPopup('refer-popup')">
             <i class="fas fa-users col-ref"></i>
             <span>Refer & Earn</span>
+            <div class="info-subtext">Bonus: ৳ 0.50</div>
         </div>
     </div>
 
-    <!-- 🔒 Anti-Cheat Radar Screen -->
+    <!-- 🔒 Anti-Cheat Overlay -->
     <div id="lock-screen" class="lock-overlay">
         <div class="lock-box">
             <div class="lock-icon"><i class="fas fa-user-shield"></i></div>
             <div style="font-size:18px; font-weight:700; margin-bottom:10px;">Live Anti-Cheat Tracking</div>
             <div style="font-size:12px; color:#94a3b8; margin-bottom:15px;">মিনি অ্যাপটি ফুল স্ক্রিনে ১০ সেকেন্ড সচল রাখতে হবে।</div>
             <div id="timer-display" class="lock-timer">10s</div>
-            
-            <div id="cheat-alert" class="cheat-warning" style="display:none;">
-                🚨 Split Screen / Focus Churi detected! Penalty: Timer 10s e reset kora holo!
-            </div>
-            
+            <div id="cheat-alert" class="cheat-warning" style="display:none;">🚨 Split Screen / Focus Churi detected! Penalty: Reset!</div>
             <button id="reward-claim-btn" class="btn-block" style="display:none; background:#10b981; color:white;" onclick="claimSecureReward()">🎁 Claim Reward</button>
         </div>
     </div>
 
-    <!-- 💼 Professional Withdraw Popup -->
+    <!-- 💼 Withdraw Popup -->
     <div id="withdraw-popup" class="popup">
         <div class="popup-content">
             <h2><i class="fas fa-money-check-alt"></i> Withdraw Balance</h2>
-            <div class="withdraw-alert">📢 মিনিমাম উইথড্র লিমিট: ৳ ৩০.০০ (বিকাশ)</div>
-            
-            <input type="number" id="bkash-number" class="popup-input" placeholder="Enter Bkash Personal Number">
+            <div class="withdraw-alert">📢 বিকাশ পার্সোনাল মিনিমাম উইথড্র লিমিট: ৳ ৩০.০০। ভুল নাম্বার দিলে পেমেন্ট পাবেন না।</div>
+            <input type="number" id="bkash-number" class="popup-input" placeholder="Enter Bkash Number">
             <input type="number" id="withdraw-amount" class="popup-input" placeholder="Enter Amount (Minimum 30)">
-            
             <button class="btn-block" onclick="submitWithdraw()">Submit Request</button>
             <div style="margin-top: 15px; font-size: 13px; color: #94a3b8; cursor: pointer;" onclick="closePopup('withdraw-popup')">Cancel</div>
         </div>
     </div>
 
-    <!-- Refer Popup -->
-    <div id="refer-popup" class="popup"><div class="popup-content"><h2>Refer & Earn</h2><input type="text" class="popup-input" readonly value="https://t.me/EasyRewardBDBot?start=refUser"><button class="btn-block" onclick="claimReferralBonus()">Simulate Referral</button><br><span style="cursor:pointer; color:#94a3b8; font-size:13px; display:inline-block; margin-top:10px;" onclick="closePopup('refer-popup')">Close</span></div></div>
+    <!-- 👥 Refer Popup (Fake Button Removed) -->
+    <div id="refer-popup" class="popup">
+        <div class="popup-content">
+            <h2><i class="fas fa-share-alt"></i> Refer & Earn</h2>
+            <div class="withdraw-alert" style="background: rgba(168, 85, 247, 0.1); border-color: #a855f7; color: #c084fc;">
+                🎉 প্রতি সফল রেফারে পাবেন নিশ্চিত ৳ ০.৫০ বোনাস! নিচের লিংকটি কপি করে বন্ধুদের শেয়ার করুন।
+            </div>
+            <input type="text" class="popup-input" id="ref-link-input" readonly value="https://t.me/EasyRewardBDBot?start=refUser">
+            <button class="btn-block" style="background:#a855f7; color:white;" onclick="navigator.clipboard.writeText(document.getElementById('ref-link-input').value); alert('Link Copied!');">📋 Copy Link</button>
+            <br>
+            <span style="cursor:pointer; color:#94a3b8; font-size:13px; display:inline-block; margin-top:12px;" onclick="closePopup('refer-popup')">Close</span>
+        </div>
+    </div>
 
     <script>
         const MAX_DAILY_ADS = 20; 
 
-        // 🔄 পুরানো ব্যালেন্স জিরো করার জন্য মাস্টার রিসেট কোড
         if (localStorage.getItem('balance_system_v2_reset') !== 'true') {
             localStorage.setItem('balance', '0.00'); 
             localStorage.setItem('balance_system_v2_reset', 'true'); 
@@ -157,7 +168,6 @@
             localStorage.setItem('last_reset_date', new Date().toDateString());
         }
 
-        // 📅 ডেইলি ডেট চেকার
         let todayStr = new Date().toDateString();
         if (localStorage.getItem('last_reset_date') !== todayStr) {
             localStorage.setItem('ad1_remaining', MAX_DAILY_ADS);
@@ -174,119 +184,58 @@
         document.getElementById('ad1-count').innerText = `Remaining: ${ad1Left}/${MAX_DAILY_ADS}`;
         document.getElementById('ad2-count').innerText = `Remaining: ${ad2Left}/${MAX_DAILY_ADS}`;
 
-        let adTimer;
-        let timeRemaining = 10;
-        let canClaim = false;
-        let appFocused = true;
-        let activeAdType = '';
+        let adTimer; let timeRemaining = 10; let canClaim = false; let appFocused = true; let activeAdType = '';
 
-        function verifyChannelJoin() {
-            window.open("https://t.me/+WTcMr-uFw3s1MDVl", '_blank');
-            localStorage.setItem('channel_joined', 'true');
-            isJoined = true;
-            alert('Channel Verified!');
-        }
+        function verifyChannelJoin() { window.open("https://t.me/+WTcMr-uFw3s1MDVl", '_blank'); localStorage.setItem('channel_joined', 'true'); isJoined = true; alert('Channel Verified!'); }
 
-        // 👁️ HIGH SECURITY RADAR
-        window.addEventListener('blur', function() {
-            if (!canClaim) {
-                appFocused = false;
-                timeRemaining = 10; 
-                document.getElementById('timer-display').innerText = "10s";
-                document.getElementById('cheat-alert').style.display = 'block';
-            }
-        });
-
+        window.addEventListener('blur', function() { if (!canClaim) { appFocused = false; timeRemaining = 10; document.getElementById('timer-display').innerText = "10s"; document.getElementById('cheat-alert').style.display = 'block'; } });
         window.addEventListener('focus', function() { appFocused = true; });
-
-        document.addEventListener("visibilitychange", function() {
-            if (document.hidden && !canClaim) {
-                appFocused = false;
-                timeRemaining = 10;
-                document.getElementById('timer-display').innerText = "10s";
-                document.getElementById('cheat-alert').style.display = 'block';
-            }
-        });
+        document.addEventListener("visibilitychange", function() { if (document.hidden && !canClaim) { appFocused = false; timeRemaining = 10; document.getElementById('timer-display').innerText = "10s"; document.getElementById('cheat-alert').style.display = 'block'; } });
 
         function startSecureAd(type) {
             if (!isJoined) { alert('🔴 Age channel e join koren!'); return; }
-            
-            if (type === 'monetag' && ad1Left <= 0) { alert('❌ Today\'s limit over for Ads 1! Come back tomorrow.'); return; }
-            if (type === 'direct' && ad2Left <= 0) { alert('❌ Today\'s limit over for Ads 2! Come back tomorrow.'); return; }
+            if (type === 'monetag' && ad1Left <= 0) { alert('❌ Limit Over!'); return; }
+            if (type === 'direct' && ad2Left <= 0) { alert('❌ Limit Over!'); return; }
 
-            activeAdType = type;
-            timeRemaining = 10;
-            canClaim = false;
-            appFocused = true;
+            activeAdType = type; timeRemaining = 10; canClaim = false; appFocused = true;
             document.getElementById('cheat-alert').style.display = 'none';
             document.getElementById('reward-claim-btn').style.display = 'none';
             document.getElementById('timer-display').style.display = 'block';
             document.getElementById('timer-display').innerText = timeRemaining + "s";
             document.getElementById('lock-screen').style.display = 'flex';
 
-            if (type === 'monetag' && typeof show_11258396 === 'function') {
-                show_11258396().catch(() => {});
-            } else {
-                window.open('https://omg10.com/4/11260213', '_blank');
-            }
+            if (type === 'monetag' && typeof show_11258396 === 'function') { show_11258396().catch(() => {}); } 
+            else { window.open('https://omg10.com/4/11260213', '_blank'); }
 
             clearInterval(adTimer);
             adTimer = setInterval(function() {
                 if (appFocused && !document.hidden) {
                     timeRemaining--;
-                    if (timeRemaining > 0) {
-                        document.getElementById('timer-display').innerText = timeRemaining + "s";
-                    } else {
-                        clearInterval(adTimer);
-                        canClaim = true;
-                        document.getElementById('timer-display').style.display = 'none';
-                        document.getElementById('cheat-alert').style.display = 'none';
-                        document.getElementById('reward-claim-btn').style.display = 'block';
-                    }
+                    if (timeRemaining > 0) { document.getElementById('timer-display').innerText = timeRemaining + "s"; } 
+                    else { clearInterval(adTimer); canClaim = true; document.getElementById('timer-display').style.display = 'none'; document.getElementById('cheat-alert').style.display = 'none'; document.getElementById('reward-claim-btn').style.display = 'block'; }
                 }
             }, 1000);
         }
 
         function claimSecureReward() {
             if (canClaim) {
-                if (activeAdType === 'monetag') {
-                    ad1Left--;
-                    localStorage.setItem('ad1_remaining', ad1Left);
-                    document.getElementById('ad1-count').innerText = `Remaining: ${ad1Left}/${MAX_DAILY_ADS}`;
-                } else if (activeAdType === 'direct') {
-                    ad2Left--;
-                    localStorage.setItem('ad2_remaining', ad2Left);
-                    document.getElementById('ad2-count').innerText = `Remaining: ${ad2Left}/${MAX_DAILY_ADS}`;
-                }
-
-                currentBalance += 0.10;
-                localStorage.setItem('balance', currentBalance);
-                document.getElementById('user-balance').innerText = currentBalance.toFixed(2);
-                alert('🎉 Reward added successfully!');
-                document.getElementById('lock-screen').style.display = 'none';
+                if (activeAdType === 'monetag') { ad1Left--; localStorage.setItem('ad1_remaining', ad1Left); document.getElementById('ad1-count').innerText = `Remaining: ${ad1Left}/${MAX_DAILY_ADS}`; } 
+                else if (activeAdType === 'direct') { ad2Left--; localStorage.setItem('ad2_remaining', ad2Left); document.getElementById('ad2-count').innerText = `Remaining: ${ad2Left}/${MAX_DAILY_ADS}`; }
+                currentBalance += 0.10; localStorage.setItem('balance', currentBalance); document.getElementById('user-balance').innerText = currentBalance.toFixed(2);
+                alert('🎉 Reward added!'); document.getElementById('lock-screen').style.display = 'none';
             }
         }
 
-        // 💸 Withdraw System (Updated to 30 TK minimum)
         function submitWithdraw() {
-            let number = document.getElementById('bkash-number').value;
-            let amount = parseFloat(document.getElementById('withdraw-amount').value);
-
-            if (!number || number.length < 11) { alert('❌ সঠিক বিকাশ নম্বর দিন।'); return; }
-            if (isNaN(amount) || amount < 30) { alert('❌ দুঃখিত! মিনিমাম ৩০ টাকা উইথড্র করতে হবে।'); return; }
+            let number = document.getElementById('bkash-number').value; let amount = parseFloat(document.getElementById('withdraw-amount').value);
+            if (!number || number.length < 11) { alert('❌ সঠিক নম্বর দিন।'); return; }
+            if (isNaN(amount) || amount < 30) { alert('❌ মিনিমাম ৩০ টাকা উইথড্র!'); return; }
             if (amount > currentBalance) { alert('❌ পর্যাপ্ত ব্যালেন্স নেই!'); return; }
-
-            currentBalance -= amount;
-            localStorage.setItem('balance', currentBalance);
-            document.getElementById('user-balance').innerText = currentBalance.toFixed(2);
-            
+            currentBalance -= amount; localStorage.setItem('balance', currentBalance); document.getElementById('user-balance').innerText = currentBalance.toFixed(2);
             alert(`✅ সফল হয়েছে!\n৳${amount.toFixed(2)} উইথড্র রিকোয়েস্ট পাঠানো হয়েছে।`);
-            closePopup('withdraw-popup');
-            document.getElementById('bkash-number').value = '';
-            document.getElementById('withdraw-amount').value = '';
+            closePopup('withdraw-popup'); document.getElementById('bkash-number').value = ''; document.getElementById('withdraw-amount').value = '';
         }
 
-        function claimReferralBonus() { currentBalance += 0.50; localStorage.setItem('balance', currentBalance); document.getElementById('user-balance').innerText = currentBalance.toFixed(2); alert("Refer bonus added!"); closePopup('refer-popup'); }
         function openPopup(id) { if(isJoined) document.getElementById(id).style.display = 'flex'; }
         function closePopup(id) { document.getElementById(id).style.display = 'none'; }
     </script>
