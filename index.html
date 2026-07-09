@@ -6,7 +6,6 @@
     <title>Easy Earning BD</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- 🔴 Monetag Script -->
     <script src='//libtl.com/sdk.js' data-zone='11258396' data-sdk='show_11258396'></script>
 
     <style>
@@ -17,6 +16,7 @@
         .header h1 { font-size: 24px; font-weight: 700; }
         .header p { font-size: 13px; color: #94a3b8; margin-top: 5px; }
         
+        /* 🚨 Fixed Hardcore Notice Board */
         .notice-board { background: rgba(244, 63, 94, 0.15); border: 1px solid #f43f5e; width: 100%; max-width: 350px; border-radius: 12px; padding: 12px 15px; margin-bottom: 20px; text-align: center; font-size: 12.5px; color: #fecdd3; font-weight: 600; line-height: 1.5; box-shadow: 0 4px 15px rgba(244, 63, 94, 0.1); }
         
         .balance-card { background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%); width: 100%; max-width: 350px; border-radius: 20px; padding: 20px; text-align: center; box-shadow: 0 10px 25px rgba(2, 132, 199, 0.3); margin-bottom: 25px; }
@@ -46,7 +46,7 @@
         .lock-timer { font-size: 38px; font-weight: 800; color: #38bdf8; margin-bottom: 15px; }
         .cheat-warning { color: #f43f5e; font-size: 13px; font-weight: bold; margin-top: 10px; background: rgba(244, 63, 94, 0.1); padding: 8px; border-radius: 8px; border: 1px dashed #f43f5e; }
         
-        /* 💼 Popup Design */
+        /* 💼 Professional Popup Design */
         .popup { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 20px; }
         .popup-content { background: #1e293b; border: 1px solid #334155; padding: 25px; border-radius: 20px; width: 100%; max-width: 340px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
         .popup-content h2 { font-size: 20px; margin-bottom: 10px; color: #38bdf8; }
@@ -119,31 +119,34 @@
         </div>
     </div>
 
-    <!-- 🔒 Anti-Cheat Overlay -->
     <div id="lock-screen" class="lock-overlay">
         <div class="lock-box">
             <div class="lock-icon"><i class="fas fa-user-shield"></i></div>
             <div style="font-size:18px; font-weight:700; margin-bottom:10px;">Live Anti-Cheat Tracking</div>
             <div style="font-size:12px; color:#94a3b8; margin-bottom:15px;">মিনি অ্যাপটি ফুল স্ক্রিনে ১০ সেকেন্ড সচল রাখতে হবে।</div>
             <div id="timer-display" class="lock-timer">10s</div>
-            <div id="cheat-alert" class="cheat-warning" style="display:none;">🚨 Split Screen / Focus Churi detected! Penalty: Reset!</div>
+            
+            <div id="cheat-alert" class="cheat-warning" style="display:none;">
+                🚨 Split Screen / Focus Churi detected! Penalty: Timer 10s e reset kora holo!
+            </div>
+            
             <button id="reward-claim-btn" class="btn-block" style="display:none; background:#10b981; color:white;" onclick="claimSecureReward()">🎁 Claim Reward</button>
         </div>
     </div>
 
-    <!-- 💼 Withdraw Popup -->
     <div id="withdraw-popup" class="popup">
         <div class="popup-content">
             <h2><i class="fas fa-money-check-alt"></i> Withdraw Balance</h2>
             <div class="withdraw-alert">📢 বিকাশ পার্সোনাল মিনিমাম উইথড্র লিমিট: ৳ ৩০.০০। ভুল নাম্বার দিলে পেমেন্ট পাবেন না।</div>
-            <input type="number" id="bkash-number" class="popup-input" placeholder="Enter Bkash Number">
+            
+            <input type="number" id="bkash-number" class="popup-input" placeholder="Enter Bkash Personal Number">
             <input type="number" id="withdraw-amount" class="popup-input" placeholder="Enter Amount (Minimum 30)">
+            
             <button class="btn-block" onclick="submitWithdraw()">Submit Request</button>
             <div style="margin-top: 15px; font-size: 13px; color: #94a3b8; cursor: pointer;" onclick="closePopup('withdraw-popup')">Cancel</div>
         </div>
     </div>
 
-    <!-- 👥 Refer Popup (Fake Button Removed) -->
     <div id="refer-popup" class="popup">
         <div class="popup-content">
             <h2><i class="fas fa-share-alt"></i> Refer & Earn</h2>
@@ -151,7 +154,7 @@
                 🎉 প্রতি সফল রেফারে পাবেন নিশ্চিত ৳ ০.৫০ বোনাস! নিচের লিংকটি কপি করে বন্ধুদের শেয়ার করুন।
             </div>
             <input type="text" class="popup-input" id="ref-link-input" readonly value="https://t.me/EasyRewardBDBot?start=refUser">
-            <button class="btn-block" style="background:#a855f7; color:white;" onclick="navigator.clipboard.writeText(document.getElementById('ref-link-input').value); alert('Link Copied!');">📋 Copy Link</button>
+            <button class="btn-block" style="background:#a855f7; color:white;" onclick="navigator.clipboard.writeText(document.getElementById('ref-link-input').value); alert('📋 Link Copied Successfully!');">📋 Copy Link</button>
             <br>
             <span style="cursor:pointer; color:#94a3b8; font-size:13px; display:inline-block; margin-top:12px;" onclick="closePopup('refer-popup')">Close</span>
         </div>
@@ -160,6 +163,7 @@
     <script>
         const MAX_DAILY_ADS = 20; 
 
+        // 🔄 পুরানো ব্যালেন্স জিরো করার জন্য মাস্টার রিসেট কোড
         if (localStorage.getItem('balance_system_v2_reset') !== 'true') {
             localStorage.setItem('balance', '0.00'); 
             localStorage.setItem('balance_system_v2_reset', 'true'); 
@@ -168,6 +172,7 @@
             localStorage.setItem('last_reset_date', new Date().toDateString());
         }
 
+        // 📅 ডেইলি ডেট চেকার
         let todayStr = new Date().toDateString();
         if (localStorage.getItem('last_reset_date') !== todayStr) {
             localStorage.setItem('ad1_remaining', MAX_DAILY_ADS);
@@ -186,16 +191,39 @@
 
         let adTimer; let timeRemaining = 10; let canClaim = false; let appFocused = true; let activeAdType = '';
 
-        function verifyChannelJoin() { window.open("https://t.me/+WTcMr-uFw3s1MDVl", '_blank'); localStorage.setItem('channel_joined', 'true'); isJoined = true; alert('Channel Verified!'); }
+        function verifyChannelJoin() {
+            window.open("https://t.me/+WTcMr-uFw3s1MDVl", '_blank');
+            localStorage.setItem('channel_joined', 'true');
+            isJoined = true;
+            alert('Channel Verified!');
+        }
 
-        window.addEventListener('blur', function() { if (!canClaim) { appFocused = false; timeRemaining = 10; document.getElementById('timer-display').innerText = "10s"; document.getElementById('cheat-alert').style.display = 'block'; } });
+        // 👁️ HIGH SECURITY RADAR
+        window.addEventListener('blur', function() {
+            if (!canClaim) {
+                appFocused = false;
+                timeRemaining = 10; 
+                document.getElementById('timer-display').innerText = "10s";
+                document.getElementById('cheat-alert').style.display = 'block';
+            }
+        });
+
         window.addEventListener('focus', function() { appFocused = true; });
-        document.addEventListener("visibilitychange", function() { if (document.hidden && !canClaim) { appFocused = false; timeRemaining = 10; document.getElementById('timer-display').innerText = "10s"; document.getElementById('cheat-alert').style.display = 'block'; } });
+
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden && !canClaim) {
+                appFocused = false;
+                timeRemaining = 10;
+                document.getElementById('timer-display').innerText = "10s";
+                document.getElementById('cheat-alert').style.display = 'block';
+            }
+        });
 
         function startSecureAd(type) {
             if (!isJoined) { alert('🔴 Age channel e join koren!'); return; }
-            if (type === 'monetag' && ad1Left <= 0) { alert('❌ Limit Over!'); return; }
-            if (type === 'direct' && ad2Left <= 0) { alert('❌ Limit Over!'); return; }
+            
+            if (type === 'monetag' && ad1Left <= 0) { alert('❌ Today\'s limit over for Ads 1! Come back tomorrow.'); return; }
+            if (type === 'direct' && ad2Left <= 0) { alert('❌ Today\'s limit over for Ads 2! Come back tomorrow.'); return; }
 
             activeAdType = type; timeRemaining = 10; canClaim = false; appFocused = true;
             document.getElementById('cheat-alert').style.display = 'none';
@@ -204,36 +232,66 @@
             document.getElementById('timer-display').innerText = timeRemaining + "s";
             document.getElementById('lock-screen').style.display = 'flex';
 
-            if (type === 'monetag' && typeof show_11258396 === 'function') { show_11258396().catch(() => {}); } 
-            else { window.open('https://omg10.com/4/11260213', '_blank'); }
+            if (type === 'monetag' && typeof show_11258396 === 'function') {
+                show_11258396().catch(() => {});
+            } else {
+                window.open('https://omg10.com/4/11260213', '_blank');
+            }
 
             clearInterval(adTimer);
             adTimer = setInterval(function() {
                 if (appFocused && !document.hidden) {
                     timeRemaining--;
-                    if (timeRemaining > 0) { document.getElementById('timer-display').innerText = timeRemaining + "s"; } 
-                    else { clearInterval(adTimer); canClaim = true; document.getElementById('timer-display').style.display = 'none'; document.getElementById('cheat-alert').style.display = 'none'; document.getElementById('reward-claim-btn').style.display = 'block'; }
+                    if (timeRemaining > 0) {
+                        document.getElementById('timer-display').innerText = timeRemaining + "s";
+                    } else {
+                        clearInterval(adTimer);
+                        canClaim = true;
+                        document.getElementById('timer-display').style.display = 'none';
+                        document.getElementById('cheat-alert').style.display = 'none';
+                        document.getElementById('reward-claim-btn').style.display = 'block';
+                    }
                 }
             }, 1000);
         }
 
         function claimSecureReward() {
             if (canClaim) {
-                if (activeAdType === 'monetag') { ad1Left--; localStorage.setItem('ad1_remaining', ad1Left); document.getElementById('ad1-count').innerText = `Remaining: ${ad1Left}/${MAX_DAILY_ADS}`; } 
-                else if (activeAdType === 'direct') { ad2Left--; localStorage.setItem('ad2_remaining', ad2Left); document.getElementById('ad2-count').innerText = `Remaining: ${ad2Left}/${MAX_DAILY_ADS}`; }
-                currentBalance += 0.10; localStorage.setItem('balance', currentBalance); document.getElementById('user-balance').innerText = currentBalance.toFixed(2);
-                alert('🎉 Reward added!'); document.getElementById('lock-screen').style.display = 'none';
+                if (activeAdType === 'monetag') {
+                    ad1Left--;
+                    localStorage.setItem('ad1_remaining', ad1Left);
+                    document.getElementById('ad1-count').innerText = `Remaining: ${ad1Left}/${MAX_DAILY_ADS}`;
+                } else if (activeAdType === 'direct') {
+                    ad2Left--;
+                    localStorage.setItem('ad2_remaining', ad2Left);
+                    document.getElementById('ad2-count').innerText = `Remaining: ${ad2Left}/${MAX_DAILY_ADS}`;
+                }
+
+                currentBalance += 0.10;
+                localStorage.setItem('balance', currentBalance);
+                document.getElementById('user-balance').innerText = currentBalance.toFixed(2);
+                alert('🎉 Reward added successfully!');
+                document.getElementById('lock-screen').style.display = 'none';
             }
         }
 
+        // 💸 Withdraw System
         function submitWithdraw() {
-            let number = document.getElementById('bkash-number').value; let amount = parseFloat(document.getElementById('withdraw-amount').value);
-            if (!number || number.length < 11) { alert('❌ সঠিক নম্বর দিন।'); return; }
-            if (isNaN(amount) || amount < 30) { alert('❌ মিনিমাম ৩০ টাকা উইথড্র!'); return; }
+            let number = document.getElementById('bkash-number').value;
+            let amount = parseFloat(document.getElementById('withdraw-amount').value);
+
+            if (!number || number.length < 11) { alert('❌ সঠিক বিকাশ নম্বর দিন।'); return; }
+            if (isNaN(amount) || amount < 30) { alert('❌ দুঃখিত! মিনিমাম ৩০ টাকা উইথড্র করতে হবে।'); return; }
             if (amount > currentBalance) { alert('❌ পর্যাপ্ত ব্যালেন্স নেই!'); return; }
-            currentBalance -= amount; localStorage.setItem('balance', currentBalance); document.getElementById('user-balance').innerText = currentBalance.toFixed(2);
+
+            currentBalance -= amount;
+            localStorage.setItem('balance', currentBalance);
+            document.getElementById('user-balance').innerText = currentBalance.toFixed(2);
+            
             alert(`✅ সফল হয়েছে!\n৳${amount.toFixed(2)} উইথড্র রিকোয়েস্ট পাঠানো হয়েছে।`);
-            closePopup('withdraw-popup'); document.getElementById('bkash-number').value = ''; document.getElementById('withdraw-amount').value = '';
+            closePopup('withdraw-popup');
+            document.getElementById('bkash-number').value = '';
+            document.getElementById('withdraw-amount').value = '';
         }
 
         function openPopup(id) { if(isJoined) document.getElementById(id).style.display = 'flex'; }
