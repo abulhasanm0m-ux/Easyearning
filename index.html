@@ -17,7 +17,6 @@
         .header h1 { font-size: 24px; font-weight: 700; }
         .header p { font-size: 13px; color: #94a3b8; margin-top: 5px; }
         
-        /* কড়া নোটিশ স্টাইল */
         .notice-board { background: rgba(244, 63, 94, 0.15); border: 1px solid #f43f5e; width: 100%; max-width: 350px; border-radius: 12px; padding: 10px 15px; margin-bottom: 15px; text-align: center; font-size: 12px; color: #fda4af; font-weight: 500; }
         
         .balance-card { background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%); width: 100%; max-width: 350px; border-radius: 20px; padding: 20px; text-align: center; box-shadow: 0 10px 25px rgba(2, 132, 199, 0.3); margin-bottom: 25px; }
@@ -27,7 +26,7 @@
         .join-banner { background: rgba(30, 41, 59, 0.7); border: 2px solid #38bdf8; width: 100%; max-width: 350px; border-radius: 15px; padding: 15px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; }
         .join-info { display: flex; align-items: center; gap: 12px; }
         .join-info i { font-size: 24px; color: #24a1de; }
-        .join-btn { background: #24a1de; color: white; text-decoration: none; padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .join-btn { background: #24a1de; color: white; text-decoration: none; padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; }
         
         .section-title { width: 100%; max-width: 350px; font-size: 14px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; font-weight: 600; }
         .menu-grid { width: 100%; max-width: 350px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 20px; }
@@ -68,7 +67,7 @@
     <!-- 📢 টেলিগ্রাম চ্যানেল জয়েনিং ব্যানার -->
     <div class="join-banner">
         <div class="join-info"><i class="fab fa-telegram"></i><div><h3>Our Channel</h3><p>Join to unlock working</p></div></div>
-        <a href="https://t.me/+WTcMr-uFw3s1MDVl" target="_blank" class="join-btn" onclick="verifyChannelJoin()">Join Now</a>
+        <button class="join-btn" onclick="verifyChannelJoin()">Join Now</button>
     </div>
 
     <div class="section-title">Earn Money</div>
@@ -123,12 +122,12 @@
         </div>
     </div>
 
-    <!-- Referral Popup -->
+    <!-- Referral Popup (সঠিক বটের ইউজারনেমসহ) -->
     <div id="refer-popup" class="popup">
         <div class="popup-content">
             <h2>Refer & Earn</h2>
             <p style="font-size: 13px; color: #cbd5e1; margin: 10px 0;">Share link to get instant ৳ 0.50 for each friend signup!</p>
-            <input type="text" id="ref-link" readonly value="https://t.me/EasyEarningBDBot?start=refUser">
+            <input type="text" id="ref-link" readonly value="https://t.me/EasyRewardBDBot?start=refUser">
             <button class="btn-block" onclick="claimReferralBonus()">Simulate 1 Referral Sign Up</button>
             <span class="close-btn" onclick="closePopup('refer-popup')">Close</span>
         </div>
@@ -141,11 +140,12 @@
         let isJoined = localStorage.getItem('channel_joined') === 'true';
         document.getElementById('user-balance').innerText = currentBalance.toFixed(2);
 
-        // চ্যানেল জয়েন ভেরিফিকেশন ট্র্যাকার
+        // চ্যানেল জয়েন ভেরিফিকেশন
         function verifyChannelJoin() {
+            window.open("https://t.me/+WTcMr-uFw3s1MDVl", '_blank');
             localStorage.setItem('channel_joined', 'true');
             isJoined = true;
-            alert('চ্যানেল ভিজিট করার জন্য ধন্যবাদ! এখন আপনার কাজের বাটনগুলো আনলক হয়েছে।');
+            alert('চ্যানেল ভিজিট করার জন্য ধন্যবাদ! এখন আপনার বাটনগুলো আনলক হয়েছে।');
         }
 
         function checkJoinStatus() {
@@ -156,19 +156,17 @@
             return true;
         }
 
-        // 🔒 Watch Ads 1 (Main Monetag SDK) - প্রোপার লোড সিকিউরিটিসহ
+        // 🔒 Watch Ads 1 (Main Monetag)
         function showWatchAds1() {
             if (!checkJoinStatus()) return;
             
             if (typeof show_11258396 === 'function') {
                 show_11258396().then(() => {
-                    // অ্যাড সম্পূর্ণ সফলভাবে শেষ হলে তবেই টাকা যোগ হবে
                     addMoney(0.10); 
                 }).catch((err) => {
-                    alert("অ্যাড লোড হতে সমস্যা হয়েছে বা আপনি কেটে দিয়েছেন! আবার চেষ্টা করুন।");
+                    alert("অ্যাড লোড হতে সমস্যা হয়েছে বা আপনি কেটে দিয়েছেন!");
                 });
             } else {
-                // এসডিকে লোড হওয়ার ব্যাকআপ মেথড ও অটো ব্যালেন্সিং রোধ
                 alert("অ্যাড নেটওয়ার্ক লোড হচ্ছে... অনুগ্রহ করে ৫ সেকেন্ড অপেক্ষা করুন।");
                 setTimeout(function() {
                     addMoney(0.10);
@@ -176,17 +174,16 @@
             }
         }
 
-        // 🔒 Watch Ads 2 (Direct Link) - কড়া ৫ সেকেন্ডের টাইমার ট্র্যাকিং সিকিউরিটিসহ
+        // 🔒 Watch Ads 2 (Direct Link) - ৫ সেকেন্ড সিকিউরিটিসহ
         function showWatchAds2() {
             if (!checkJoinStatus()) return;
 
             let directAdLink = "https://omg10.com/4/11260213";
-            alert('⚠️ সাবধান: ডিরেক্ট অ্যাড ওপেন হচ্ছে! টাকা পেতে আপনাকে অবশ্যই পেজটিতে ৫ সেকেন্ড থাকতে হবে। আগে কেটে দিলে ব্যালেন্স পাবেন না।');
+            alert('⚠️ সাবধান: ডিরেক্ট অ্যাড ওপেন হচ্ছে! টাকা পেতে আপনাকে অবশ্যই পেজটিতে ৫ সেকেন্ড থাকতে হবে।');
             
             let startTime = new Date().getTime();
             window.open(directAdLink, '_blank');
 
-            // ইউজার যখন ৫ সেকেন্ড পর মিনি অ্যাপ ট্যাবে ব্যাক আসবে তখনই ভেরিফাই হবে
             setTimeout(function() {
                 let endTime = new Date().getTime();
                 if ((endTime - startTime) >= 5000) {
@@ -204,13 +201,12 @@
             alert(`৳ ${amount} আপনার অ্যাকাউন্টে যোগ হয়েছে!`);
         }
 
-        // ৫. ইনস্ট্যান্ট রেফারেল বোনাস (৫০ পয়সা)
         function claimReferralBonus() {
             if (!checkJoinStatus()) return;
             currentBalance += 0.50;
             localStorage.setItem('balance', currentBalance);
             document.getElementById('user-balance').innerText = currentBalance.toFixed(2);
-            alert("সফল হয়েছে! রেফার বোনাস ৳ ০.৫০ ইনস্ট্যান্ট আপনার ব্যালেন্সে যোগ হয়েছে।");
+            alert("সফল হয়েছে! রেফার বোনাস ৳ ০.৫০ ব্যালেন্সে যোগ হয়েছে।");
             closePopup('refer-popup');
         }
 
@@ -220,7 +216,7 @@
         }
         function closePopup(id) { document.getElementById(id).style.display = 'none'; }
 
-        // ৬. বিকাশ উইথড্র সিস্টেম
+        // বিকাশ উইথড্র (সঠিক বটের ইউজারনেমসহ)
         function submitWithdraw() {
             let number = document.getElementById('number').value;
             let amount = parseFloat(document.getElementById('amount').value);
@@ -233,7 +229,7 @@
             document.getElementById('user-balance').innerText = currentBalance.toFixed(2);
 
             let msg = `💰 NEW BKASH WITHDRAW REQUEST 💰\nMethod: Bkash\nNumber: ${number}\nAmount: ৳ ${amount}`;
-            window.open(`https://t.me/EasyEarningBDBot?text=${encodeURIComponent(msg)}`, '_blank');
+            window.open(`https://t.me/EasyRewardBDBot?text=${encodeURIComponent(msg)}`, '_blank');
             alert('আপনার বিকাশ উইথড্র রিকোয়েস্টটি অ্যাডমিনের কাছে পাঠানো হয়েছে!');
             closePopup('withdraw-popup');
         }
